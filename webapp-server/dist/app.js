@@ -29,7 +29,7 @@ const lowdb_1 = __importDefault(require("lowdb"));
 const FileSync_1 = __importDefault(require("lowdb/adapters/FileSync"));
 const app = express_1.default();
 const path_1 = __importDefault(require("path"));
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3333;
 // cors
 app.use(cors_1.default());
 // database defaults
