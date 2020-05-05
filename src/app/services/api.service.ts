@@ -17,7 +17,7 @@ import {environment} from '../../environments/environment';
     providedIn: 'root'
 })
 export class ApiService {
-    apiBase = ``;
+    apiBase = `http://localhost:3333`;
 
     constructor(private httpClient: HttpClient, private auth: AuthService, private router: Router) {
     }

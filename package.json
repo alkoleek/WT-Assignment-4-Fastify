@@ -6,12 +6,11 @@
   "scripts": {
     "config": "ts-node -P ./src/environments/tsconfig.json -r ./src/environments/set-env.ts",
     "ng": "ng",
-    "start": "node ./webapp-server/dist/app.js",
+    "start": "concurrently --kill-others \"node ./webapp-server/dist/app.js\" \"ng serve\"",
     "build": "tsc --p ./webapp-server && ng build --aot --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "heroku-postbuild": "tsc --p ./webapp-server && ng build --aot --prod"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -59,6 +58,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/request": "^2.48.3",
     "codelyzer": "^5.0.0",
+    "concurrently": "^5.2.0",
     "enhanced-resolve": "^4.1.1",
     "fs": "0.0.1-security",
     "jasmine-core": "~3.4.0",

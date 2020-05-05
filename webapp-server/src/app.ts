@@ -20,7 +20,7 @@ import FileSync from "lowdb/adapters/FileSync";
 
 const app = express();
 import path from "path";
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3333;
 // cors
 app.use(cors());
 
