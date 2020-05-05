@@ -17,7 +17,7 @@ import {environment} from '../../environments/environment';
     providedIn: 'root'
 })
 export class ApiService {
-    apiBase = `${environment.API_BASE}:${environment.PORT}`;
+    apiBase = `/`;
 
     constructor(private httpClient: HttpClient, private auth: AuthService, private router: Router) {
     }

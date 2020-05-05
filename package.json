@@ -7,11 +7,11 @@
     "config": "ts-node -P ./src/environments/tsconfig.json -r ./src/environments/set-env.ts",
     "ng": "ng",
     "start": "node ./webapp-server/dist/app.js",
-    "build": "npm run config && tsc --p ./webapp-server && ng build --aot --prod",
+    "build": "tsc --p ./webapp-server && ng build --aot --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "heroku-postbuild": "npm run config && tsc --p ./webapp-server && ng build --aot --prod"
+    "heroku-postbuild": "tsc --p ./webapp-server && ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
