@@ -428,11 +428,11 @@ app.post("/rmtask", cors(), async (req, res, next) => {
     }
 });
 
-app.use(express.static(__dirname + "../../../www"));
+/*app.use(express.static(__dirname + "../../../www"));
 
 app.all("/*", (req, res) => {
     res.sendFile(path.join(__dirname + "../../../www/index.html"));
-});
+});*/
 
 app.listen(port, () => {
     console.log(`Server running on ${port}`);
