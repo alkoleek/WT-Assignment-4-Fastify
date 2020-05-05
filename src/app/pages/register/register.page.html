@@ -1,0 +1,16 @@
+<!-- Student : Maxime DROUIN
+     Student number : 3008951  -->
+
+<app-site-header [border]="false" [center]="true" title="Taskify">
+    <ion-buttons slot="start">
+        <ion-button [routerLink]="'/login'">
+            <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</app-site-header>
+<ion-content>
+    <div id="login_form">
+        <h1>Sign up</h1>
+        <app-user-form buttonText="Sign up" (submit)="register($event)"></app-user-form>
+    </div>
+</ion-content>

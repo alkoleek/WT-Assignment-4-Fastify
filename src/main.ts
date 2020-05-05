@@ -1,3 +1,8 @@
+/*
+  Student: Maxime DROUIN
+  Student number: 3008951
+ */
+
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 

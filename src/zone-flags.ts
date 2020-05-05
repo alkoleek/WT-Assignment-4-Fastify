@@ -1,3 +1,8 @@
+/*
+  Student: Maxime DROUIN
+  Student number: 3008951
+ */
+
 /**
  * Prevents Angular change detection from
  * running with certain Web Component callbacks

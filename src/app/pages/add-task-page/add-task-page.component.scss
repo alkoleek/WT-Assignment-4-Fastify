@@ -1,0 +1,23 @@
+/*
+  Student: Maxime DROUIN
+  Student number : 3008951
+ */
+
+:host {
+  padding: 20px 80px 0;
+  overflow-y: auto;
+}
+
+@media only screen and (max-height: 870px) {
+  :host {
+    padding: 0;
+    overflow-y: auto;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  :host {
+    padding: 0;
+    overflow-y: auto;
+  }
+}

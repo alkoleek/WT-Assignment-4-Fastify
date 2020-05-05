@@ -1,0 +1,32 @@
+<!-- Student : Maxime DROUIN
+     Student number : 3008951  -->
+
+<ion-row>
+    <ion-col id="title" size="2">
+        {{task.title}}
+    </ion-col>
+    <ion-col id="description" size="3">
+        {{task.description}}
+    </ion-col>
+    <ion-col id="users" size="2">
+        <ion-chip *ngFor="let user of task.users">{{user}}</ion-chip>
+    </ion-col>
+    <ion-col id="date" size="2">
+        {{task.delivery | date:'dd/MM/yyyy H:mm'}}
+    </ion-col>
+    <ion-col id="priority" size="1">
+        <app-priority-chip [value]="task.priority"></app-priority-chip>
+    </ion-col>
+    <ion-col id="completed" size="1">
+        <ion-checkbox color="secondary" [(ngModel)]="task.inprogress"
+                      (ngModelChange)="updateProgress($event, task)"></ion-checkbox>
+    </ion-col>
+    <ion-col id="tools" size="1">
+        <ion-button fill="clear" color="medium" size="small" shape="round" (click)="editTask(task)">
+            <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" color="medium" size="small" shape="round" (click)="deleteTask(task)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+    </ion-col>
+</ion-row>

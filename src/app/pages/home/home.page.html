@@ -1,0 +1,22 @@
+<!-- Student : Maxime DROUIN
+     Student number : 3008951  -->
+
+<app-site-header [border]="false" [center]="true" title="Taskify">
+    <ion-buttons slot="end">
+        <app-incomplete-task-badge [tasks]="tasks"></app-incomplete-task-badge>
+        <app-logout-button (click)="logout()"></app-logout-button>
+    </ion-buttons>
+</app-site-header>
+<ion-content>
+    <div id="table_title_container">
+        <ion-button shape="round" id="add_task" (click)="addTask()" color="tertiary">
+            <ion-icon slot="start" name="add"></ion-icon>
+            Add a task
+        </ion-button>
+        <h1 id="table_title">My tasks</h1>
+    </div>
+    <div id="table-container">
+        <app-task-table width="90%" maxWidth="1300px" height="80%" maxHeight="700" minWidth="700px" [header]="header"
+                        [(tasks)]="tasks" (tasksChange)="tasksChanged($event)" [users]="users"></app-task-table>
+    </div>
+</ion-content>

@@ -1,0 +1,95 @@
+<!-- Student : Maxime DROUIN
+     Student number : 3008951  -->
+
+<form [formGroup]="formControl" (ngSubmit)="onSubmit()">
+    <!-- TITLE -->
+    <ion-item lines="full">
+        <ion-label position="floating">Title</ion-label>
+        <ion-input placeholder="My awesome task" inputmode="text" type="text" formControlName="title"
+                   required></ion-input>
+    </ion-item>
+
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of form_messages.title">
+            <div class="error-message"
+                 *ngIf="formControl.get('title').hasError(validation.type) && (formControl.get('title').dirty || formControl.get('title').touched)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <ion-item lines="full">
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea [autoGrow]="true" placeholder="Go to the supermarket" inputmode="text" type="text"
+                      formControlName="description" required></ion-textarea>
+    </ion-item>
+
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of form_messages.description">
+            <div class="error-message"
+                 *ngIf="formControl.get('description').hasError(validation.type) && (formControl.get('description').dirty || formControl.get('description').touched)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+
+    <!-- USERS -->
+    <ion-item lines="full">
+        <ion-label position="floating">Users</ion-label>
+        <ion-select #select interface="alert" [multiple]="true" placeholder="Users" formControlName="users">
+            <ion-select-option *ngFor="let user of users" [value]="user">{{user}}</ion-select-option>
+        </ion-select>
+    </ion-item>
+
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of form_messages.users">
+            <div class="error-message"
+                 *ngIf="formControl.get('users').hasError(validation.type) && (formControl.get('users').dirty || formControl.get('users').touched)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+
+    <!-- DATE -->
+    <ion-item lines="full">
+        <ion-label position="floating">Delivery date</ion-label>
+        <ion-datetime min="2020-01-01" max="2120-01-01" (ionChange)="getDate($event)"
+                      display-format="DD/MM/YYYY H:mm" formControlName="delivery"
+                      required></ion-datetime>
+    </ion-item>
+
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of form_messages.delivery">
+            <div class="error-message"
+                 *ngIf="formControl.get('delivery').hasError(validation.type) && (formControl.get('delivery').dirty || formControl.get('delivery').touched)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+
+    <!-- PRIORITY -->
+    <ion-item lines="full">
+        <ion-label position="floating">Priority</ion-label>
+        <ion-input placeholder="1" inputmode="number" type="number" formControlName="priority" required></ion-input>
+    </ion-item>
+
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of form_messages.priority">
+            <div class="error-message"
+                 *ngIf="formControl.get('priority').hasError(validation.type) && (formControl.get('priority').dirty || formControl.get('priority').touched)">
+                {{ validation.message }}
+            </div>
+        </ng-container>
+    </div>
+
+    <ion-button
+            expand="block"
+            size="large"
+            shape="round"
+            type="submit"
+            color="secondary"
+            [disabled]="!formControl.valid">
+        {{buttonText}}
+    </ion-button>
+</form>

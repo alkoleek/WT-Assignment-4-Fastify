@@ -1,0 +1,35 @@
+<!-- Student : Maxime DROUIN
+     Student number : 3008951  -->
+
+<form [formGroup]="formControl" (ngSubmit)="onSubmit()">
+  <ion-item lines="full">
+    <ion-label position="floating">Username</ion-label>
+    <ion-input placeholder="Michel77" inputmode="text" type="text" formControlName="username" required></ion-input>
+  </ion-item>
+
+  <div class="validation-errors">
+    <ng-container *ngFor="let validation of form_messages.username">
+      <div class="error-message"
+           *ngIf="formControl.get('username').hasError(validation.type) && (formControl.get('username').dirty || formControl.get('username').touched)">
+        {{ validation.message }}
+      </div>
+    </ng-container>
+  </div>
+
+  <ion-item lines="full">
+    <ion-label position="floating">Password</ion-label>
+    <ion-input placeholder="•••••••" inputmode="password" type="password" formControlName="password" required></ion-input>
+  </ion-item>
+  <div class="validation-errors">
+    <ng-container *ngFor="let validation of form_messages.password">
+      <div class="error-message"
+           *ngIf="formControl.get('password').hasError(validation.type) && (formControl.get('password').dirty || formControl.get('password').touched)">
+        {{ validation.message }}
+      </div>
+    </ng-container>
+  </div>
+
+  <ion-button expand="block" size="large" shape="round" type="submit"
+              [disabled]="!formControl.valid">{{buttonText}}
+  </ion-button>
+</form>

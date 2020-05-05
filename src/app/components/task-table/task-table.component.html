@@ -1,0 +1,10 @@
+<!-- Student : Maxime DROUIN
+     Student number : 3008951  -->
+
+<ion-grid #table id="table">
+    <app-task-table-header [header]="header"></app-task-table-header>
+   <app-task-table-element *ngFor="let a of tasks; let i = index"
+                            [(task)]="tasks[i]" [users]="users"
+                            (remove)="removeTask(i)"
+                            (taskChange)="taskChanged($event, i)"></app-task-table-element>
+</ion-grid>

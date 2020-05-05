@@ -1,0 +1,15 @@
+<!-- Student : Maxime DROUIN
+     Student number : 3008951  -->
+
+<ion-list>
+    <ion-list-header>
+        Incomplete tasks
+    </ion-list-header>
+    <ion-item *ngFor="let task of tasks">
+        <ion-label>
+            <h1>{{task.title}}</h1>
+            <h2>{{task.delivery | date:'dd/MM/yyyy H:mm'}}</h2>
+            <h3>{{task.description}}</h3>
+        </ion-label>
+    </ion-item>
+</ion-list>

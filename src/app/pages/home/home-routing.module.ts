@@ -1,3 +1,8 @@
+/*
+  Student: Maxime DROUIN
+  Student number: 3008951
+ */
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';

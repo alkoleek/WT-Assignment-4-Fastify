@@ -1,0 +1,16 @@
+<!-- Student : Maxime DROUIN
+     Student number : 3008951  -->
+
+<ion-header class="ion-no-border">
+    <ion-toolbar class="ion-text-center">
+        <ion-buttons slot="start">
+            <app-close-modal-button (click)="close()">
+            </app-close-modal-button>
+        </ion-buttons>
+        <ion-title>Edit a task</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <app-task-form buttonText="Edit task" [task]="task" [users]="users" (submit)="onSubmit($event)">
+    </app-task-form>
+</ion-content>

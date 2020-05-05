@@ -1,0 +1,17 @@
+/*
+  Student: Achille LAROCHE
+  Student number: 3008965
+ */
+
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "trailing-comma": [ false ]
+    },
+    "rulesDirectory": []
+}
+
