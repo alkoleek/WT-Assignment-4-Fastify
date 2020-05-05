@@ -8,7 +8,7 @@
 // tslint:disable:max-line-length
 // tslint:disable:no-string-literal
 // tslint:disable:object-literal-sort-keys
-'use strict';
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -32,7 +32,7 @@ const path_1 = __importDefault(require("path"));
 // cors
 app.use(cors_1.default());
 // database defaults
-const adapter = new FileSync_1.default(path_1.default.join(__dirname + '/db.json'));
+const adapter = new FileSync_1.default(path_1.default.join(__dirname + "/db.json"));
 const db = lowdb_1.default(adapter);
 db.defaults({ users: {}, tasks: [] }).write();
 // add JSON handling
@@ -45,27 +45,27 @@ app.use(express_1.default.json());
     });
 });*/
 // register new user
-app.post('/register', cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+app.post("/register", cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     try {
         if (!req.body.username || !req.body.password) {
-            res.status(400).json({ error: 'Missing parameter' });
+            res.status(400).json({ error: "Missing parameter" });
             return;
         }
         const regex = /^[A-Za-z0-9 ]+$/;
         if (req.body.username.length < 3 || regex.test(req.body.username) !== true) {
-            res.status(400).json({ error: 'Invalid username' });
+            res.status(400).json({ error: "Invalid username" });
             return;
         }
         if (req.body.password.length < 3 || regex.test(req.body.password) !== true) {
-            res.status(400).json({ error: 'Invalid password' });
+            res.status(400).json({ error: "Invalid password" });
             return;
         }
-        if (db.get('users[\'' + req.body.username + '\']').value() != null) {
-            res.status(400).json({ error: 'User already exists' });
+        if (db.get("users['" + req.body.username + "']").value() != null) {
+            res.status(400).json({ error: "User already exists" });
             return;
         }
-        const hash = crypto_1.default.createHash('sha256').update(req.body.password).digest('hex');
-        db.set('users[\'' + req.body.username + '\']', {
+        const hash = crypto_1.default.createHash("sha256").update(req.body.password).digest("hex");
+        db.set("users['" + req.body.username + "']", {
             password: hash
         }).write();
         const payload = {
@@ -73,7 +73,7 @@ app.post('/register', cors_1.default(), (req, res, next) => __awaiter(this, void
                 id: req.body.username
             }
         };
-        jsonwebtoken_1.default.sign(payload, 'webapp-1098429605962', {
+        jsonwebtoken_1.default.sign(payload, "webapp-1098429605962", {
             expiresIn: 10000
         }, (err, token) => {
             if (err) {
@@ -86,33 +86,33 @@ app.post('/register', cors_1.default(), (req, res, next) => __awaiter(this, void
     }
     catch (err) {
         console.log(err);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: "Internal server error" });
     }
 }));
 // login user
-app.post('/login', cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+app.post("/login", cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     try {
         if (!req.body.username || !req.body.password) {
-            res.status(400).json({ error: 'Missing parameter' });
+            res.status(400).json({ error: "Missing parameter" });
             return;
         }
         const regex = /^[A-Za-z0-9 ]+$/;
         if (req.body.username.length < 3 || regex.test(req.body.username) !== true) {
-            res.status(400).json({ error: 'Invalid username' });
+            res.status(400).json({ error: "Invalid username" });
             return;
         }
         if (req.body.password.length < 3 || regex.test(req.body.password) !== true) {
-            res.status(400).json({ error: 'Invalid password' });
+            res.status(400).json({ error: "Invalid password" });
             return;
         }
-        if (db.get('users[\'' + req.body.username + '\']').value() == null) {
-            res.status(400).json({ error: 'Invalid username or password' });
+        if (db.get("users['" + req.body.username + "']").value() == null) {
+            res.status(400).json({ error: "Invalid username or password" });
             return;
         }
-        const user = db.get('users[\'' + req.body.username + '\']').value();
-        const hash = crypto_1.default.createHash('sha256').update(req.body.password).digest('hex');
+        const user = db.get("users['" + req.body.username + "']").value();
+        const hash = crypto_1.default.createHash("sha256").update(req.body.password).digest("hex");
         if (user.password !== hash) {
-            res.status(400).json({ error: 'Invalid username or password' });
+            res.status(400).json({ error: "Invalid username or password" });
             return;
         }
         new Date().toISOString();
@@ -121,7 +121,7 @@ app.post('/login', cors_1.default(), (req, res, next) => __awaiter(this, void 0,
                 id: req.body.username
             }
         };
-        jsonwebtoken_1.default.sign(payload, 'webapp-1098429605962', {
+        jsonwebtoken_1.default.sign(payload, "webapp-1098429605962", {
             expiresIn: 10000
         }, (err, token) => {
             if (err) {
@@ -134,18 +134,18 @@ app.post('/login', cors_1.default(), (req, res, next) => __awaiter(this, void 0,
     }
     catch (err) {
         console.log(err);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: "Internal server error" });
     }
 }));
 // get user data
-app.get('/user', cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-    if (!req.header('token')) {
-        res.status(400).json({ error: 'Invalid Token' });
+app.get("/user", cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    if (!req.header("token")) {
+        res.status(400).json({ error: "Invalid Token" });
         return;
     }
     try {
-        const data = jsonwebtoken_1.default.verify(req.header('token'), 'webapp-1098429605962');
-        const tasks = db.get('tasks').value();
+        const data = jsonwebtoken_1.default.verify(req.header("token"), "webapp-1098429605962");
+        const tasks = db.get("tasks").value();
         const user = data.user.id;
         const usertasks = [];
         for (const task of tasks) {
@@ -154,22 +154,22 @@ app.get('/user', cors_1.default(), (req, res, next) => __awaiter(this, void 0, v
                 usertasks.push(task);
             }
         }
-        data.user['tasks'] = usertasks;
+        data.user["tasks"] = usertasks;
         res.status(200).json({ data });
     }
     catch (err) {
-        res.status(400).json({ error: 'Invalid Token' });
+        res.status(400).json({ error: "Invalid Token" });
     }
 }));
 // get all users
-app.get('/users', cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-    if (!req.header('token')) {
-        res.status(400).json({ error: 'Invalid Token' });
+app.get("/users", cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    if (!req.header("token")) {
+        res.status(400).json({ error: "Invalid Token" });
         return;
     }
     try {
-        jsonwebtoken_1.default.verify(req.header('token'), 'webapp-1098429605962');
-        const usersobj = db.get('users').value();
+        jsonwebtoken_1.default.verify(req.header("token"), "webapp-1098429605962");
+        const usersobj = db.get("users").value();
         const users = [];
         for (const key of Object.keys(usersobj)) {
             users.push(key);
@@ -177,27 +177,27 @@ app.get('/users', cors_1.default(), (req, res, next) => __awaiter(this, void 0, 
         res.status(200).json(users);
     }
     catch (err) {
-        res.status(400).json({ error: 'Invalid Token' });
+        res.status(400).json({ error: "Invalid Token" });
     }
 }));
 // get task data by title
-app.get('/task/:id', cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-    if (!req.header('token')) {
-        res.status(400).json({ error: 'Invalid Token' });
+app.get("/task/:id", cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    if (!req.header("token")) {
+        res.status(400).json({ error: "Invalid Token" });
         return;
     }
     try {
         if (!req.params.id) {
-            res.status(400).json({ error: 'Missing parameter' });
+            res.status(400).json({ error: "Missing parameter" });
             return;
         }
-        jsonwebtoken_1.default.verify(req.header('token'), 'webapp-1098429605962');
+        jsonwebtoken_1.default.verify(req.header("token"), "webapp-1098429605962");
     }
     catch (err) {
-        res.status(400).json({ error: 'Invalid Token' });
+        res.status(400).json({ error: "Invalid Token" });
     }
     try {
-        const array = db.get('tasks').value();
+        const array = db.get("tasks").value();
         let id = -1;
         for (let i = 0; i < array.length; ++i) {
             if (array[i].title === req.params.id) {
@@ -206,26 +206,26 @@ app.get('/task/:id', cors_1.default(), (req, res, next) => __awaiter(this, void 
             }
         }
         if (id < 0) {
-            res.status(400).json({ error: 'Task \'' + req.params.id + '\' does not exist' });
+            res.status(400).json({ error: "Task '" + req.params.id + "' does not exist" });
             return;
         }
         res.status(200).json({ task: array[id] });
     }
     catch (err) {
         console.log(err);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: "Internal server error" });
     }
 }));
 // get all tasks
-app.get('/tasks', cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-    if (!req.header('token')) {
-        res.status(400).json({ error: 'Invalid Token' });
+app.get("/tasks", cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    if (!req.header("token")) {
+        res.status(400).json({ error: "Invalid Token" });
         return;
     }
     try {
-        jsonwebtoken_1.default.verify(req.header('token'), 'webapp-1098429605962');
-        const data = jsonwebtoken_1.default.verify(req.header('token'), 'webapp-1098429605962');
-        const tasks = db.get('tasks').value();
+        jsonwebtoken_1.default.verify(req.header("token"), "webapp-1098429605962");
+        const data = jsonwebtoken_1.default.verify(req.header("token"), "webapp-1098429605962");
+        const tasks = db.get("tasks").value();
         const user = data.user.id;
         const usertasks = [];
         for (const task of tasks) {
@@ -237,52 +237,52 @@ app.get('/tasks', cors_1.default(), (req, res, next) => __awaiter(this, void 0, 
         res.status(200).json(usertasks);
     }
     catch (err) {
-        res.status(400).json({ error: 'Invalid Token' });
+        res.status(400).json({ error: "Invalid Token" });
     }
 }));
 // create task
-app.post('/addtask', cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-    if (!req.header('token')) {
-        res.status(400).json({ error: 'Invalid Token' });
+app.post("/addtask", cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    if (!req.header("token")) {
+        res.status(400).json({ error: "Invalid Token" });
         return;
     }
     try {
-        jsonwebtoken_1.default.verify(req.header('token'), 'webapp-1098429605962');
+        jsonwebtoken_1.default.verify(req.header("token"), "webapp-1098429605962");
     }
     catch (err) {
-        res.status(400).json({ error: 'Invalid Token' });
+        res.status(400).json({ error: "Invalid Token" });
     }
     try {
         if (!req.body.title || !req.body.description || !req.body.users || !req.body.delivery || !req.body.priority) {
-            res.status(400).json({ error: 'Missing parameter' });
+            res.status(400).json({ error: "Missing parameter" });
             return;
         }
         const regex = /^[A-Za-z0-9 ]+$/;
         if (req.body.title.length < 3 || regex.test(req.body.title) !== true) {
-            res.status(400).json({ error: 'Invalid title' });
+            res.status(400).json({ error: "Invalid title" });
             return;
         }
         if (req.body.description.length < 10) {
-            res.status(400).json({ error: 'Invalid description' });
+            res.status(400).json({ error: "Invalid description" });
             return;
         }
         if (req.body.users.length <= 0) {
-            res.status(400).json({ error: 'Invalid userlist' });
+            res.status(400).json({ error: "Invalid userlist" });
             return;
         }
         if (new Date(req.body.delivery) < new Date()) {
-            res.status(400).json({ error: 'Invalid delivery' });
+            res.status(400).json({ error: "Invalid delivery" });
             return;
         }
         if (parseInt(req.body.priority, 10) < 1 || parseInt(req.body.priority, 10) > 5) {
-            res.status(400).json({ error: 'Invalid priority (must be between 1 and 5)' });
+            res.status(400).json({ error: "Invalid priority (must be between 1 and 5)" });
             return;
         }
-        const tasks = db.get('tasks');
+        const tasks = db.get("tasks");
         const array = tasks.value();
         for (const task of array) {
             if (task.title === req.body.title) {
-                res.status(400).json({ error: 'A task with this title already exists' });
+                res.status(400).json({ error: "A task with this title already exists" });
                 return;
             }
         }
@@ -305,48 +305,48 @@ app.post('/addtask', cors_1.default(), (req, res, next) => __awaiter(this, void 
     }
     catch (err) {
         console.log(err);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: "Internal server error" });
     }
 }));
 // edit task
-app.put('/edittask', cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-    if (!req.header('token')) {
-        res.status(400).json({ error: 'Invalid Token' });
+app.put("/edittask", cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    if (!req.header("token")) {
+        res.status(400).json({ error: "Invalid Token" });
         return;
     }
     try {
-        jsonwebtoken_1.default.verify(req.header('token'), 'webapp-1098429605962');
+        jsonwebtoken_1.default.verify(req.header("token"), "webapp-1098429605962");
     }
     catch (err) {
-        res.status(400).json({ error: 'Invalid Token' });
+        res.status(400).json({ error: "Invalid Token" });
     }
     try {
         if (!req.body.title || (!req.body.description && !req.body.users && !req.body.delivery && !req.body.priority && req.body.inprogress === null)) {
-            res.status(400).json({ error: 'Missing parameter' });
+            res.status(400).json({ error: "Missing parameter" });
             return;
         }
         const regex = /^[A-Za-z0-9 ]+$/;
         if (req.body.title.length < 3 || regex.test(req.body.title) !== true) {
-            res.status(400).json({ error: 'Invalid title' });
+            res.status(400).json({ error: "Invalid title" });
             return;
         }
         if (req.body.description && req.body.description.length < 10) {
-            res.status(400).json({ error: 'Invalid description' });
+            res.status(400).json({ error: "Invalid description" });
             return;
         }
         if (req.body.users && req.body.users.length <= 0) {
-            res.status(400).json({ error: 'Invalid userlist' });
+            res.status(400).json({ error: "Invalid userlist" });
             return;
         }
         if (req.body.delivery && new Date(req.body.delivery) <= new Date()) {
-            res.status(400).json({ error: 'Invalid delivery' });
+            res.status(400).json({ error: "Invalid delivery" });
             return;
         }
         if (req.body.priority && (parseInt(req.body.priority, 10) < 1 || parseInt(req.body.priority, 10) > 5)) {
-            res.status(400).json({ error: 'Invalid priority (must be between 1 and 5)' });
+            res.status(400).json({ error: "Invalid priority (must be between 1 and 5)" });
             return;
         }
-        const array = db.get('tasks').value();
+        const array = db.get("tasks").value();
         let id = -1;
         for (let i = 0; i < array.length; ++i) {
             if (array[i].title === req.body.title) {
@@ -355,7 +355,7 @@ app.put('/edittask', cors_1.default(), (req, res, next) => __awaiter(this, void 
             }
         }
         if (id < 0) {
-            res.status(400).json({ error: 'Task \'' + req.body.title + '\' does not exist' });
+            res.status(400).json({ error: "Task '" + req.body.title + "' does not exist" });
             return;
         }
         array[id] = {
@@ -366,7 +366,7 @@ app.put('/edittask', cors_1.default(), (req, res, next) => __awaiter(this, void 
             description: req.body.description || array[id].description,
             inprogress: (req.body.inprogress === null ? array[id].inprogress : req.body.inprogress)
         };
-        db.set('tasks', array).write();
+        db.set("tasks", array).write();
         res.status(200).json({
             title: req.body.title,
             users: req.body.users || array[id].users,
@@ -378,27 +378,27 @@ app.put('/edittask', cors_1.default(), (req, res, next) => __awaiter(this, void 
     }
     catch (err) {
         console.log(err);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: "Internal server error" });
     }
 }));
 // remove task
-app.post('/rmtask', cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-    if (!req.header('token')) {
-        res.status(400).json({ error: 'Invalid Token' });
+app.post("/rmtask", cors_1.default(), (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    if (!req.header("token")) {
+        res.status(400).json({ error: "Invalid Token" });
         return;
     }
     try {
-        jsonwebtoken_1.default.verify(req.header('token'), 'webapp-1098429605962');
+        jsonwebtoken_1.default.verify(req.header("token"), "webapp-1098429605962");
     }
     catch (err) {
-        res.status(400).json({ error: 'Invalid Token' });
+        res.status(400).json({ error: "Invalid Token" });
     }
     try {
         if (!req.body.title) {
-            res.status(400).json({ error: 'Missing parameter' });
+            res.status(400).json({ error: "Missing parameter" });
             return;
         }
-        const array = db.get('tasks').value();
+        const array = db.get("tasks").value();
         let id = -1;
         for (let i = 0; i < array.length; ++i) {
             if (array[i].title === req.body.title) {
@@ -407,23 +407,23 @@ app.post('/rmtask', cors_1.default(), (req, res, next) => __awaiter(this, void 0
             }
         }
         if (id < 0) {
-            res.status(400).json({ error: 'Task \'' + req.body.title + '\' does not exist' });
+            res.status(400).json({ error: "Task '" + req.body.title + "' does not exist" });
             return;
         }
         array.splice(id, 1);
-        db.set('tasks', array).write();
+        db.set("tasks", array).write();
         res.status(200).json({ success: true });
     }
     catch (err) {
         console.log(err);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: "Internal server error" });
     }
 }));
-app.use(express_1.default.static(__dirname + '../../../www'));
-app.all('/*', (req, res) => {
-    res.sendFile(path_1.default.join(__dirname + '../../../www/index.html'));
+app.use(express_1.default.static(__dirname + "../../../www"));
+app.all("/*", (req, res) => {
+    res.sendFile(path_1.default.join(__dirname + "../../../www/index.html"));
 });
-app.listen(4242, () => {
-    console.log('Server running on port 4242');
+app.listen(80, () => {
+    console.log("Server running on port 80");
 });
 //# sourceMappingURL=app.js.map

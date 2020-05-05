@@ -434,6 +434,6 @@ app.all("/*", (req, res) => {
     res.sendFile(path.join(__dirname + "../../../www/index.html"));
 });
 
-app.listen(4242, () => {
-    console.log("Server running on port 4242");
+app.listen(80, () => {
+    console.log("Server running on port 80");
 });

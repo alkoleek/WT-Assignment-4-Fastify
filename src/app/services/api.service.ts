@@ -16,7 +16,7 @@ import {Task} from '../models/task';
     providedIn: 'root'
 })
 export class ApiService {
-    apiBase = 'http://localhost:4242';
+    apiBase = 'http://localhost:80';
 
     constructor(private httpClient: HttpClient, private auth: AuthService, private router: Router) {
     }

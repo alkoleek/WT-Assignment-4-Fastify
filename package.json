@@ -5,8 +5,8 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "node webapp-server/dist/app.js",
-    "build": "tsc --p ./webapp-server && ng build",
+    "start": "node ./webapp-server/dist/app.js",
+    "build": "tsc --p ./webapp-server && ng build --aot --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
