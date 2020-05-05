@@ -11,12 +11,13 @@ import {catchError} from 'rxjs/operators';
 import {AuthService} from './auth.service';
 import {Router} from '@angular/router';
 import {Task} from '../models/task';
+import {environment} from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ApiService {
-    apiBase = 'http://localhost:80';
+    apiBase = `${environment.API_BASE}:${environment.PORT}`;
 
     constructor(private httpClient: HttpClient, private auth: AuthService, private router: Router) {
     }

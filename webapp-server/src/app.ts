@@ -20,7 +20,7 @@ import FileSync from "lowdb/adapters/FileSync";
 
 const app = express();
 import path from "path";
-
+const port = process.env.PORT || 80;
 // cors
 app.use(cors());
 
@@ -434,6 +434,6 @@ app.all("/*", (req, res) => {
     res.sendFile(path.join(__dirname + "../../../www/index.html"));
 });
 
-app.listen(80, () => {
-    console.log("Server running on port 80");
+app.listen(port, () => {
+    console.log(`Server running on ${port}`);
 });

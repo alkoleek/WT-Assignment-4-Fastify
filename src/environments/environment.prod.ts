@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+   PORT: '80',
+   API_BASE: 'http://localhost',
+   production: true
 };

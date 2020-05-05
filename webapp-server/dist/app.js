@@ -29,6 +29,7 @@ const lowdb_1 = __importDefault(require("lowdb"));
 const FileSync_1 = __importDefault(require("lowdb/adapters/FileSync"));
 const app = express_1.default();
 const path_1 = __importDefault(require("path"));
+const port = process.env.PORT || 80;
 // cors
 app.use(cors_1.default());
 // database defaults
@@ -423,7 +424,7 @@ app.use(express_1.default.static(__dirname + "../../../www"));
 app.all("/*", (req, res) => {
     res.sendFile(path_1.default.join(__dirname + "../../../www/index.html"));
 });
-app.listen(80, () => {
-    console.log("Server running on port 80");
+app.listen(port, () => {
+    console.log(`Server running on ${port}`);
 });
 //# sourceMappingURL=app.js.map
