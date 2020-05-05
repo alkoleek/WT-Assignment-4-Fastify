@@ -7,7 +7,7 @@
     "config": "ts-node -P ./src/environments/tsconfig.json -r ./src/environments/set-env.ts",
     "ng": "ng",
     "start": "concurrently --kill-others \"node ./webapp-server/dist/app.js\" \"ng serve\"",
-    "build": "tsc --p ./webapp-server && ng build --aot --prod",
+    "build": "tsc --p ./webapp-server",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
